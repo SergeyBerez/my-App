@@ -28,33 +28,29 @@ function criateElem(mes) {
 function FnInsert() {
   let prop = vlSelect; //получаем данные с селекта
   let selector = document.querySelector('input').value; //получаем данные с инпута
-  if (selector == '' ) {
+  if (selector == '') {
     console.log(selector);
     console.log(1111);
     document.body.append(criateElem('вы не ввели селектор '));
     document.querySelector('.overlay').addEventListener('click', function(e) {
       document.querySelector('.overlay').remove();
     });
-
-  } else if(document.querySelector(selector)==null){
+  } else if (document.querySelector(selector) == null) {
     document.body.append(criateElem('вы ввели некорректный селектор '));
     document.querySelector('.overlay').addEventListener('click', function(e) {
       document.querySelector('.overlay').remove();
     });
-  }
-  else if (prop == undefined) {
+  } else if (prop == undefined) {
     document.body.append(criateElem('вы не выбрали свойство '));
     document.querySelector('.overlay').addEventListener('click', function(e) {
       document.querySelector('.overlay').remove();
     });
-  }
-  else if (prop == 'undefined') {
+  } else if (prop == 'undefined') {
     document.body.append(criateElem('вы не выбрали свойство '));
     document.querySelector('.overlay').addEventListener('click', function(e) {
       document.querySelector('.overlay').remove();
     });
-  }
-   else {
+  } else {
     document.querySelector(selector).style = prop;
   }
   // try {
@@ -80,3 +76,51 @@ function FnInsert() {
   //   console.log('catch');
   // }
 }
+  // игра крестики нолики
+
+  let i = 2;
+  let divs = document.querySelectorAll('.box');
+  console.log(divs);
+  let cont = document.querySelector('.cont');
+  cont.addEventListener('click', function(e) {
+    if (e.target.classList.contains('box') && i % 2 == 1) {
+      e.target.textContent = 'X';
+    } else if (e.target.classList.contains('box') && i % 2 == 0) {
+      e.target.textContent = 'O';
+    }
+    i++;
+
+    repair();
+  });
+
+  function repair() {
+    let arr = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < divs.length; i++) {
+      if (
+        divs[arr[i][0]].innerHTML == 'X' &&
+        divs[arr[i][1]].innerHTML == 'X' &&
+        divs[arr[i][2]].innerHTML == 'X'
+      ) {
+        alert('выйграл Х');
+        window.location.reload();
+      } else if (
+        divs[arr[i][0]].innerHTML == 'O' &&
+        divs[arr[i][1]].innerHTML == 'O' &&
+        divs[arr[i][2]].innerHTML == 'O'
+      ) {
+        alert('выйграл O');
+        window.location.reload();
+      }
+    }
+  }
+
