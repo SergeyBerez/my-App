@@ -6,7 +6,7 @@ window.addEventListener("load", function(e) {
   const count = [];
   // создаем радномное число  от 0 до 100 для рисования элементов DOM
   function createRandomNumber() {
-    let rand = Math.round(Math.random() * (100 - 1)) + 1;
+    let rand = Math.round(Math.random() * (100 - 0)) + 5;
     return rand;
   }
 
@@ -34,6 +34,7 @@ window.addEventListener("load", function(e) {
 
     // setInterval запусткает функию раскрашиваня шариков
     let i = 0;
+
     function addColorCircle() {
       let Arrcircles = [...circless];
       Arrcircles.forEach(el => {
