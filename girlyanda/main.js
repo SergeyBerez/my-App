@@ -1,8 +1,9 @@
-window.addEventListener("load", function(e) {
-  const circless = document.getElementsByClassName("circle");
-  const btn = document.querySelector(".button");
-  const conteiner = document.querySelector(".conteiner");
-  const arrColor = ["green", "blue", "red", "pink"];
+window.addEventListener('load', function(e) {
+  const circless = document.getElementsByClassName('circle');
+  const btnStart = document.querySelector('.btn-start');
+  const btnRandom = document.querySelector('.btn-random');
+  const conteiner = document.querySelector('.conteiner');
+  const arrColor = ['green', 'blue', 'red', 'pink'];
   const count = [];
   // создаем радномное число  от 0 до 100 для рисования элементов DOM
   function createRandomNumber() {
@@ -21,7 +22,7 @@ window.addEventListener("load", function(e) {
       for (let i = 0; i < count.length; i++) {
         console.log(count[i]);
         clearInterval(count[i]);
-        btn.textContent = "start";
+        btnStart.textContent = 'start';
       }
     } else {
       // console.log("two");
@@ -29,7 +30,7 @@ window.addEventListener("load", function(e) {
       let timerId = setInterval(addColorCircle, 1000);
       count.push(timerId);
       this.dataset.id = 1;
-      btn.textContent = "stop";
+      btnStart.textContent = 'stop';
     }
 
     // setInterval запусткает функию раскрашиваня шариков
@@ -48,16 +49,22 @@ window.addEventListener("load", function(e) {
   }
   // создаем елемент дом circle
   function createCircle() {
-    let div = document.createElement("div");
-    div.className = "circle";
+    let div = document.createElement('div');
+    div.className = 'circle';
     return div;
   }
   // отрисовываем столько кругов сколько сгенирует фукнция createRandomNumber
   function renderCircle(number) {
+    conteiner.textContent = '';
     for (let i = 0; i < number; i++) {
       conteiner.append(createCircle());
     }
   }
+
   renderCircle(createRandomNumber());
-  btn.addEventListener("click", startRandomLigting);
+  btnStart.addEventListener('click', startRandomLigting);
+
+  btnRandom.addEventListener('click', function() {
+    renderCircle(createRandomNumber());
+  });
 });
